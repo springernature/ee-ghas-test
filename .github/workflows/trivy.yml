@@ -6,14 +6,12 @@ on:
 
 jobs:
   scan:
-    permissions:
-      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Upload image SBOM to GitHub
         uses: aquasecurity/trivy-action@0.33.1
         with:
-          image-ref: bkimminich/juice-shop
+          image-ref: node:slim
           scan-type: image
           output: dependency-results.sbom.json
           format: github
