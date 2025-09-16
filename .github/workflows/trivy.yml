@@ -17,3 +17,4 @@ jobs:
           scan-type: image
           output: dependency-results.sbom.json
           format: github
+          github-pat: ${{ secrets.GITHUB_TOKEN }}
