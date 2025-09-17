@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  scan:
+  sbom:
     runs-on: ubuntu-latest
     steps:
       - name: Upload image SBOM to GitHub
@@ -16,3 +16,16 @@ jobs:
           output: dependency-results.sbom.json
           format: github
           github-pat: ${{ secrets.GITHUB_TOKEN }}
+  sarif:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upload SARIF to GitHub
+        uses: aquasecurity/trivy-action@0.33.1
+        with:
+          image-ref: bkimminich/juice-shop
+          output: report.sarif
+          format: sarif
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: report.sarif
