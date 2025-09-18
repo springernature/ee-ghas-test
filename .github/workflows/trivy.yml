@@ -18,7 +18,7 @@ jobs:
           github-pat: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/upload-artifact@v4
         with:
-          name: sbom
+          name: sbom-node
           path: dependency-results.sbom.json
 
   sbom2:
@@ -34,7 +34,7 @@ jobs:
           github-pat: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/upload-artifact@v4
         with:
-          name: sbom
+          name: sbom-postgres
           path: dependency-results.sbom.json
 
   sarif:
