@@ -27,7 +27,7 @@ jobs:
       - name: Upload image SBOM to GitHub
         uses: aquasecurity/trivy-action@0.33.1
         with:
-          image-ref: postgres:16.9-trixie
+          image-ref: ruby:3.3-bullseye
           scan-type: image
           output: dependency-results.sbom.json
           format: github
