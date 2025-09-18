@@ -20,6 +20,23 @@ jobs:
         with:
           name: sbom
           path: dependency-results.sbom.json
+
+  sbom2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upload image SBOM to GitHub
+        uses: aquasecurity/trivy-action@0.33.1
+        with:
+          image-ref: postgres:16.9-trixie
+          scan-type: image
+          output: dependency-results.sbom.json
+          format: github
+          github-pat: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sbom
+          path: dependency-results.sbom.json
+
   sarif:
     runs-on: ubuntu-latest
     steps:
